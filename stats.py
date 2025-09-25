@@ -1,10 +1,11 @@
-def get_book_text(path_to_file):
-    with open(path_to_file) as f:
+import sys
+
+def get_book_text(file_path):
+    with open(file_path) as f:
         file_contents = f.read()
     return file_contents
 
 def word_reader():
-    file_path = "books/frankenstein.txt"
     book_text = get_book_text(file_path)
     return book_text
 
@@ -20,4 +21,14 @@ def count_char(book_text):
         else:
             characters[ch] = 1
     return characters
+
+def sorted_char(char_counts):
+    def get_num(items):
+        return items["num"]
+    chara_list = []
+    for ch, count in char_counts.items():
+        chara_list.append({"char": ch, "num": count})
+    chara_list.sort(reverse=True, key=get_num)
+    return chara_list
+    
                
